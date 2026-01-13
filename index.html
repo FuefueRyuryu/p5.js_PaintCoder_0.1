@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>もうこれで怖いものはない</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Toolbar -->
+        <aside class="toolbar glass-panel">
+            <div class="logo">ついにやりました</div>
+
+            <div class="file-group" style="display: flex; gap: 8px; margin-bottom: 20px;">
+                <button id="btn-save" class="secondary-btn" title="Save Project"
+                    style="flex:1; justify-content: center;">
+                    <i class="fa-solid fa-download"></i> Save
+                </button>
+                <button id="btn-load" class="secondary-btn" title="Load Project"
+                    style="flex:1; justify-content: center;">
+                    <i class="fa-solid fa-upload"></i> Load
+                </button>
+                <input type="file" id="file-input" accept=".json" style="display: none;">
+            </div>
+
+            <div class="tools-group">
+                <button id="tool-pen" class="tool-btn active" title="ぺぇん(P)">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+                <button id="tool-eraser" class="tool-btn" title="ごむごむ (E)">
+                    <i class="fa-solid fa-eraser"></i>
+                </button>
+                <button id="tool-pipette" class="tool-btn" title="駒込ピペットみたいなやつ (I)">
+                    <i class="fa-solid fa-eye-dropper"></i>
+                </button>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="properties-group">
+                <div class="property-item">
+                    <label>Colour（唐突なイギリス英語）</label>
+                    <input type="color" id="color-picker" value="#000000">
+                </div>
+                <div class="property-item">
+                    <label>ブラシ</label>
+                    <select id="brush-shape"
+                        style="background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 5px; border-radius: 5px;">
+                        <option value="round">まる♡//</option>
+                        <option value="square">しかく♡//</option>
+                    </select>
+                </div>
+                <div class="property-item">
+                    <label>シザ（Size）リガー: <span id="size-display">5</span>px</label>
+                    <input type="range" id="size-slider" min="1" max="50" value="5">
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="actions-group">
+                <button id="btn-undo" class="action-btn" title="Undo (Ctrl+Z)">
+                    <i class="fa-solid fa-rotate-left"></i> うんどー（Undo）
+                </button>
+                <button id="btn-clear" class="action-btn" title="Clear Canvas">
+                    <i class="fa-solid fa-trash"></i> きゅる（Clear）
+                </button>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="zoom-group">
+                <label>ズーム</label>
+                <div class="zoom-controls">
+                    <button id="btn-zoom-out" class="icon-btn"><i class="fa-solid fa-minus"></i></button>
+                    <span id="zoom-display">100%</span>
+                    <button id="btn-zoom-in" class="icon-btn"><i class="fa-solid fa-plus"></i></button>
+                    <button id="btn-zoom-fit" class="icon-btn" title="Fit to Screen"><i
+                            class="fa-solid fa-expand"></i></button>
+                </div>
+            </div>
+
+            <div class="generate-section">
+                <button id="btn-generate" class="primary-btn">
+                    <i class="fa-solid fa-code"></i> 生成じゃぁぁぁあ
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="workspace">
+            <div id="canvas-wrapper" class="canvas-wrapper shadow-lg">
+                <!-- Canvases will be injected here by JS -->
+            </div>
+        </main>
+
+        <!-- Right Sidebar (Layers) -->
+        <aside class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <h3>レイヤー</h3>
+                <button id="btn-add-layer" class="icon-btn" title="New Layer">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+            <div id="layers-list" class="layers-list">
+                <!-- Layer items injected here -->
+            </div>
+        </aside>
+
+        <!-- Code Modal -->
+        <div id="code-modal" class="modal hidden">
+            <div class="modal-content glass-panel">
+                <div class="modal-header">
+                    <h2>P5に移植するでぇ</h2>
+                    <button id="btn-close-modal" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="modal-body">
+                    <pre id="code-output"></pre>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-copy" class="secondary-btn">
+                        <i class="fa-regular fa-copy"></i> こぴぃぃっぃぃぃぃぃ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
